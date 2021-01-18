@@ -99,7 +99,7 @@ def load_data1(dataset_str):
     :param dataset_str: Dataset name
     :return: All data input files loaded (as well the training/test data).
     """
-    dir = 'C:\\Users\\rmmpq\\Desktop\\EEG-DL-master\\Preprocess_EEG_Data\\For-GCN-based-Models\\10\\'
+    dir = 'For-GCN-based-Models\\four_PLI_4_20\\'
     # Read the Adjacency matrix
     Adjacency_Matrix = pd.read_csv(dir + 'Adjacency_Matrix.csv', header=None)
     Adjacency_Matrix = np.array(Adjacency_Matrix).astype('float32')
@@ -158,7 +158,7 @@ def load_data2(dataset_str):
     """
 
     import h5py
-    dir = 'C:\\Users\\rmmpq\\Desktop\\gcn-master\\gcn\\For-GCN-based-Models\\four_PLI_4_20\\'
+    dir = 'For-GCN-based-Models\\four_PLI_4_20\\'
     # Read the Adjacency matrix train
     f_adj_train = h5py.File(dir + 'pli_graph_train.mat', 'r')
     adj_train = f_adj_train.get('pli_graph_train')
@@ -182,7 +182,7 @@ def load_data2(dataset_str):
     test = test.transpose((2, 1, 0))
 
     #------------------------------------------------------------------------
-    dir1 = 'C:\\Users\\rmmpq\\Desktop\\gcn-master\\gcn\\For-GCN-based-Models\\four_PLI_4_20\\'
+    dir1 = 'For-GCN-based-Models\\four_PLI_4_20\\'
 
     f_train_label = h5py.File(dir + 'training_label_1.mat', 'r')
     train_labell = f_train_label.get('label_training1')
@@ -323,23 +323,6 @@ def construct_feed_dict(features, support, labels, labels_mask, placeholders):
     feed_dict.update({placeholders['support'][i]: support[i] for i in range(len(support))})
     feed_dict.update({placeholders['num_features_nonzero']: features[1].shape})
     return feed_dict
-
-#PLI
-
-# 42,26 -> 0 - 42,85 -> 1 - 41,28 -> 2 - 45,83 -> 3 -       -> 4 =><= 2 strati - 4
-# 42,85 -> 0 - 44,64 -> 1 - 45,23 -> 2 - 41,07 -> 3 -       -> 4 =><= 1 strati - 4
-
-# 43,45 -> 0 - 45,83 -> 1 - 48,21 -> 2 - 47.02 -> 3 - 36.90 -> 4 =><= 1 strati - 1
-# 42,26 -> 0 - 41,07 -> 1 - 44,08 -> 2 - 45,23 -> 3 - 36,86 -> 4 =><= 2 strati - 1
-
-# 46.42 -> 0 - 41.66 -> 1 - 39.28 -> 2 - 39.28 -> 3 - 32.73 -> 4 =><= 1 strati 2 convoluzioni - 1
-
-# Pearson
-# 32.73 -> 0 - 35.71 -> 1 - 36,90 -> 2 - 32,73 -> 3 -  -> 4 =><= 1 strati - 1
-# 33.33 -> 0 - 36.90 -> 1 - 38.69 -> 2 - 29.76 -> 3 -  -> 4 =><= 1 strati - 4
-
-# 33.33 -> 0 - 40.47 -> 1 - 41.66 -> 2 - 34.52 -> 3 -  -> 4 =><= 2 strati - 4
-# 38.09 -> 0 - 41.66 -> 1 - 36.90 -> 2 - 35.71 -> 3 -  -> 4 =><= 2 strati - 1
 
 def construct_feed_dict2(features, support, labels, labels_mask, placeholders):
     """Construct feed dictionary."""
