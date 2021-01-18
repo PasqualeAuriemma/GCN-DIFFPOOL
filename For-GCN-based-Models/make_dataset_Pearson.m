@@ -8,6 +8,8 @@ num_trial = 20;
 path = 'Download_Raw_EEG_Data\20-Subjects\';
 %path = 'Download_Raw_EEG_Data\100-Subjects\';
 
+path_output = 'four_Pearson_4_20\';
+
 %% Read and Create Labels
 file_Label = [path, 'Labels_1.mat'];
 Labels1 = load(file_Label);
@@ -218,26 +220,26 @@ print('pli_graph_for_20_Subjects', '-dpng',  '-r600')
 
 %%
 
-pli_graph1 = []; pli_graph2 = []; pli_graph3 = []; pli_graph4 = [];
+pearson_graph1 = []; pearson_graph2 = []; pearson_graph3 = []; pearson_graph4 = [];
 
 for pp = 1:size(new_Dataset_1,1)
-    pli_graph1 = [pli_graph1; reshape(Adjacency_Matrix, 1, row, column)];
+    pearson_graph1 = [pearson_graph1; reshape(Adjacency_Matrix, 1, row, column)];
 end
 
 for pp = 1:size(new_Dataset_2,1)
-    pli_graph2 = [pli_graph2; reshape(Adjacency_Matrix2, 1, row, column)];
+    pearson_graph2 = [pearson_graph2; reshape(Adjacency_Matrix2, 1, row, column)];
 end
 
 for pp = 1:size(new_Dataset_3,1)
-    pli_graph3 = [pli_graph3; reshape(Adjacency_Matrix3, 1, row, column)];
+    pearson_graph3 = [pearson_graph3; reshape(Adjacency_Matrix3, 1, row, column)];
 end
 
 for pp = 1:size(new_Dataset_4,1)
-    pli_graph4 = [pli_graph4; reshape(Adjacency_Matrix4, 1, row, column)];
+    pearson_graph4 = [pearson_graph4; reshape(Adjacency_Matrix4, 1, row, column)];
 end
 
 
-pli_graph = [pli_graph1; pli_graph2; pli_graph3; pli_graph4];
+graph = [pearson_graph1; pearson_graph2; pearson_graph3; pearson_graph4];
 new_Dataset = [Dataset_1; Dataset_2; Dataset_3; Dataset_4];
 new_Label = [new_Label_1; new_Label_2; new_Label_3; new_Label_4];
 
@@ -245,21 +247,21 @@ number_item = size(new_Label, 1);
 rk = randperm(number_item);
 new_Label = new_Label(rk,:);
 new_Dataset = new_Dataset(rk, :, :);
-pli_graph = pli_graph(rk, :, :);
+graph = graph(rk, :, :);
 
 r = size(new_Dataset,1);
 
-pli_graph_train = pli_graph(1:fix(r/10*9),     :, :);
-pli_graph_test  = pli_graph(fix(r/10*9)+1:end, :, :);
+graph_train = graph(1:fix(r/10*9),     :, :);
+graph_test  = graph(fix(r/10*9)+1:end, :, :);
 training_set1   = new_Dataset(1:fix(r/10*9),     :, :);
 test_set1       = new_Dataset(fix(r/10*9)+1:end, :, :);
 label_training1 = new_Label(1:fix(r/10*9),       :);
 label_test1     = new_Label(fix(r/10*9)+1:end,   :);
 
-save(strcat(path, 'pli_graph_train.mat'), 'pli_graph_train','-v7.3');
-save(strcat(path, 'pli_graph_test.mat'), 'pli_graph_test','-v7.3');
-save(strcat(path, 'training_set_1.mat'), 'training_set1','-v7.3');
-save(strcat(path, 'test_set_1.mat'), 'test_set1','-v7.3');
-save(strcat(path, 'training_label_1.mat'), 'label_training1','-v7.3');
-save(strcat(path, 'test_label_1.mat'), 'label_test1','-v7.3');
+save(strcat(path_output, 'graph_train.mat'), 'graph_train','-v7.3');
+save(strcat(path_output, 'graph_test.mat'), 'graph_test','-v7.3');
+save(strcat(path_output, 'training_set_1.mat'), 'training_set1','-v7.3');
+save(strcat(path_output, 'test_set_1.mat'), 'test_set1','-v7.3');
+save(strcat(path_output, 'training_label_1.mat'), 'label_training1','-v7.3');
+save(strcat(path_output, 'test_label_1.mat'), 'label_test1','-v7.3');
 

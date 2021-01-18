@@ -237,6 +237,6 @@ end
 new_Dataset = ne_Dataset;%[Dataset_1; Dataset_2; Dataset_3; Dataset_4];
 new_Label = ne_Label; %[new_Label_1; new_Label_2; new_Label_3; new_Label_4];
 
-save('C:\Users\rmmpq\Desktop\EEG-DL-master\Preprocess_EEG_Data\For-GCN-based-Models\four_PLI_4_20_sub\pli_graph_train.mat', 'pli_graph','-v7.3');
-save('C:\Users\rmmpq\Desktop\EEG-DL-master\Preprocess_EEG_Data\For-GCN-based-Models\four_PLI_4_20_sub\training.mat', 'ne_Dataset','-v7.3');
-save('C:\Users\rmmpq\Desktop\EEG-DL-master\Preprocess_EEG_Data\For-GCN-based-Models\four_PLI_4_20_sub\label.mat', 'new_Label','-v7.3');
+save('four_PLI_4_20_sub\pli_graph_train.mat', 'pli_graph','-v7.3');
+save('four_PLI_4_20_sub\training.mat', 'ne_Dataset','-v7.3');
+save('four_PLI_4_20_sub\label.mat', 'new_Label','-v7.3');
