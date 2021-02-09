@@ -7,7 +7,7 @@ https://arxiv.org/abs/1806.08804
 
 # AUTHORS
 
-  Pasquale Auriemma, University of Naples Parthenope, Ms.c Applied Computer Science
+  Pasquale Auriemma, Ms.c Applied Computer Science, University of Naples Parthenope
 
 # CONTACTS
 
