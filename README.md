@@ -3,7 +3,9 @@ this is a implementation of gcn model with DIFFPOOL layer in tensorflow
 
 ![Image](https://github.com/PasqualeAuriemma/GCN-DIFFPOOL/blob/main/image/gcntesi.png)
 
+# REFERENCE LINK
 https://arxiv.org/abs/1806.08804
+https://tkipf.github.io/graph-convolutional-networks/
 
 # AUTHORS
 
