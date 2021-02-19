@@ -1,5 +1,4 @@
-from gcn.inits import *
-import tensorflow as tf
+from inits import *
 
 # from tensorflow_probability import distributions as tfd
 

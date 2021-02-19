@@ -232,7 +232,7 @@ class GCN(Model):
     def _loss(self):
         # Weight decay loss
 
-        for i in [1,3]:  # [2, 5, 8, 11]:
+        for i in [1, 3]:  # [2, 5, 8, 11]:
             self.loss += self.layers[i].entropy_loss + self.layers[i].link_pred_loss
         self.loss = FLAGS.weight_decay * tf.nn.l2_loss(self.loss)
         # Weight decay loss
@@ -280,18 +280,18 @@ class GCN(Model):
                                             cluster_dim=FLAGS.cluster1,
                                             output_dim=FLAGS.hidden2,
                                             placeholders=self.placeholders,
-                                            act= tf.nn.relu,
+                                            act=tf.nn.relu,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=True,
                                             logging=self.logging))
         self.layers.append(GraphConvolution(input_dim=FLAGS.hidden2,
-                                             output_dim=FLAGS.hidden2,
-                                             placeholders=self.placeholders,
-                                             act=tf.nn.relu,
-                                             bias=True,
-                                             dropout=True,
-                                             logging=self.logging))
+                                            output_dim=FLAGS.hidden2,
+                                            placeholders=self.placeholders,
+                                            act=tf.nn.relu,
+                                            bias=True,
+                                            dropout=True,
+                                            logging=self.logging))
         # self.layers.append(GraphConvolution(input_dim=FLAGS.hidden2,
         #                                      output_dim=FLAGS.hidden2,
         #                                      placeholders=self.placeholders,
@@ -366,20 +366,21 @@ class GCN(Model):
         self.layers.append(Dense(input_dim=int(FLAGS.hidden4),
                                  output_dim=FLAGS.hidden3,
                                  placeholders=self.placeholders,
-                                 act= tf.nn.relu,
+                                 act=tf.nn.relu,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
+
 
 class GCN_1_strati_1(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
@@ -439,20 +440,21 @@ class GCN_1_strati_1(Model):
         self.layers.append(Dense(input_dim=int(FLAGS.hidden4),
                                  output_dim=FLAGS.hidden3,
                                  placeholders=self.placeholders,
-                                 act= tf.nn.relu,
+                                 act=tf.nn.relu,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
+
 
 class GCN_1_strati_4(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
@@ -510,22 +512,23 @@ class GCN_1_strati_4(Model):
                                             sparse_inputs=True,
                                             logging=self.logging))
         self.layers.append(DenseFlat(input_dim=FLAGS.hidden4,
-                                 output_dim=int(FLAGS.hidden3),
-                                 placeholders=self.placeholders,
-                                 act=lambda x: x,
-                                 bias=True,
-                                 dropout=True,
-                                 logging=self.logging))
+                                     output_dim=int(FLAGS.hidden3),
+                                     placeholders=self.placeholders,
+                                     act=lambda x: x,
+                                     bias=True,
+                                     dropout=True,
+                                     logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
+
 
 class GCN_2_strati_1(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
@@ -580,18 +583,18 @@ class GCN_2_strati_1(Model):
                                             cluster_dim=FLAGS.cluster1,
                                             output_dim=FLAGS.hidden2,
                                             placeholders=self.placeholders,
-                                            act= tf.nn.relu,
+                                            act=tf.nn.relu,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=True,
                                             logging=self.logging))
         self.layers.append(GraphConvolution(input_dim=FLAGS.hidden2,
-                                             output_dim=FLAGS.hidden2,
-                                             placeholders=self.placeholders,
-                                             act=tf.nn.relu,
-                                             bias=True,
-                                             dropout=True,
-                                             logging=self.logging))
+                                            output_dim=FLAGS.hidden2,
+                                            placeholders=self.placeholders,
+                                            act=tf.nn.relu,
+                                            bias=True,
+                                            dropout=True,
+                                            logging=self.logging))
         self.layers.append(GraphDiffPooling(input_dim=FLAGS.hidden2,
                                             cluster_dim=1,
                                             output_dim=FLAGS.hidden4,
@@ -604,20 +607,21 @@ class GCN_2_strati_1(Model):
         self.layers.append(Dense(input_dim=int(FLAGS.hidden4),
                                  output_dim=FLAGS.hidden3,
                                  placeholders=self.placeholders,
-                                 act= tf.nn.relu,
+                                 act=tf.nn.relu,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
+
 
 class GCN_2_strati_4(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
@@ -672,18 +676,18 @@ class GCN_2_strati_4(Model):
                                             cluster_dim=FLAGS.cluster1,
                                             output_dim=FLAGS.hidden2,
                                             placeholders=self.placeholders,
-                                            act= tf.nn.relu,
+                                            act=tf.nn.relu,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=True,
                                             logging=self.logging))
         self.layers.append(GraphConvolution(input_dim=FLAGS.hidden2,
-                                             output_dim=FLAGS.hidden2,
-                                             placeholders=self.placeholders,
-                                             act=tf.nn.relu,
-                                             bias=True,
-                                             dropout=True,
-                                             logging=self.logging))
+                                            output_dim=FLAGS.hidden2,
+                                            placeholders=self.placeholders,
+                                            act=tf.nn.relu,
+                                            bias=True,
+                                            dropout=True,
+                                            logging=self.logging))
         self.layers.append(GraphDiffPooling(input_dim=FLAGS.hidden2,
                                             cluster_dim=4,
                                             output_dim=FLAGS.hidden4,
@@ -694,22 +698,23 @@ class GCN_2_strati_4(Model):
                                             sparse_inputs=True,
                                             logging=self.logging))
         self.layers.append(DenseFlat(input_dim=FLAGS.hidden4,
-                                 output_dim=int(FLAGS.hidden3),
-                                 placeholders=self.placeholders,
-                                 act=lambda x: x,
-                                 bias=True,
-                                 dropout=True,
-                                 logging=self.logging))
+                                     output_dim=int(FLAGS.hidden3),
+                                     placeholders=self.placeholders,
+                                     act=lambda x: x,
+                                     bias=True,
+                                     dropout=True,
+                                     logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
+
 
 class GCN_2_strati_1_2conv(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
@@ -727,7 +732,7 @@ class GCN_2_strati_1_2conv(Model):
 
     def _loss(self):
         # Weight decay loss
-        for i in [2,5]:
+        for i in [2, 5]:
             self.loss += self.layers[i].entropy_loss + self.layers[i].link_pred_loss
         self.loss = FLAGS.weight_decay * tf.nn.l2_loss(self.loss)
         # Weight decay loss
@@ -769,7 +774,7 @@ class GCN_2_strati_1_2conv(Model):
         self.layers.append(GraphConvolution(input_dim=self.input_dim,
                                             output_dim=self.input_dim,
                                             placeholders=self.placeholders,
-                                            act=lambda x:x,
+                                            act=lambda x: x,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=False,
@@ -778,22 +783,22 @@ class GCN_2_strati_1_2conv(Model):
                                             cluster_dim=FLAGS.cluster1,
                                             output_dim=FLAGS.hidden2,
                                             placeholders=self.placeholders,
-                                            act= tf.nn.relu,
+                                            act=tf.nn.relu,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=True,
                                             logging=self.logging))
         self.layers.append(GraphConvolution(input_dim=FLAGS.hidden2,
-                                             output_dim=FLAGS.hidden2,
-                                             placeholders=self.placeholders,
-                                             act=tf.nn.relu,
-                                             bias=True,
-                                             dropout=True,
-                                             logging=self.logging))
+                                            output_dim=FLAGS.hidden2,
+                                            placeholders=self.placeholders,
+                                            act=tf.nn.relu,
+                                            bias=True,
+                                            dropout=True,
+                                            logging=self.logging))
         self.layers.append(GraphConvolution(input_dim=FLAGS.hidden2,
                                             output_dim=FLAGS.hidden2,
                                             placeholders=self.placeholders,
-                                            act=lambda x:x,
+                                            act=lambda x: x,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=False,
@@ -810,20 +815,21 @@ class GCN_2_strati_1_2conv(Model):
         self.layers.append(Dense(input_dim=int(FLAGS.hidden4),
                                  output_dim=FLAGS.hidden3,
                                  placeholders=self.placeholders,
-                                 act= tf.nn.relu,
+                                 act=tf.nn.relu,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
+
 
 class GCN_1_strati_1_2conv(Model):
     def __init__(self, placeholders, input_dim, **kwargs):
@@ -877,7 +883,7 @@ class GCN_1_strati_1_2conv(Model):
         self.layers.append(GraphConvolution(input_dim=self.input_dim,
                                             output_dim=self.input_dim,
                                             placeholders=self.placeholders,
-                                            act=lambda x:x,
+                                            act=lambda x: x,
                                             bias=True,
                                             dropout=True,
                                             sparse_inputs=False,
@@ -894,18 +900,17 @@ class GCN_1_strati_1_2conv(Model):
         self.layers.append(Dense(input_dim=int(FLAGS.hidden4),
                                  output_dim=FLAGS.hidden3,
                                  placeholders=self.placeholders,
-                                 act= tf.nn.relu,
+                                 act=tf.nn.relu,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
         self.layers.append(Dense(input_dim=int(FLAGS.hidden3),
                                  output_dim=self.output_dim,
                                  placeholders=self.placeholders,
-                                 act= lambda x: x,
+                                 act=lambda x: x,
                                  bias=True,
                                  dropout=True,
                                  logging=self.logging))
 
     def predict(self):
         return tf.nn.softmax(self.outputs)
-

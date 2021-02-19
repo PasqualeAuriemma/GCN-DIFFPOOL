@@ -1,11 +1,11 @@
+import pickle as pkl
+import sys
+
+import networkx as nx
 import numpy as np
 import pandas as pd
-import pickle as pkl
-import networkx as nx
-import scipy.io as sci
 import scipy.sparse as sp
 from scipy.sparse.linalg.eigen.arpack import eigsh
-import sys
 
 
 def parse_index_file(filename):
@@ -181,7 +181,7 @@ def load_data2(dataset_str):
     test = np.array(test).astype('float32')
     test = test.transpose((2, 1, 0))
 
-    #------------------------------------------------------------------------
+    # ------------------------------------------------------------------------
     dir1 = 'For-GCN-based-Models\\four_PLI_4_20\\'
 
     f_train_label = h5py.File(dir + 'training_label_1.mat', 'r')
@@ -234,6 +234,7 @@ def load_data2(dataset_str):
     test_mask = sample_mask(idx_test, len(idx_test))
 
     return adj_train, adj_test, train_set, train_labell, test_set, test_labell, train_mask, test_mask
+
 
 def rettifyLabel(excludeList, train_labell, test_labell, train, test, adj_train, adj_test):
     argMaxTrain = train_labell.argmax(1)
@@ -324,6 +325,7 @@ def construct_feed_dict(features, support, labels, labels_mask, placeholders):
     feed_dict.update({placeholders['num_features_nonzero']: features[1].shape})
     return feed_dict
 
+
 def construct_feed_dict2(features, support, labels, labels_mask, placeholders):
     """Construct feed dictionary."""
     feed_dict = dict()
@@ -333,6 +335,7 @@ def construct_feed_dict2(features, support, labels, labels_mask, placeholders):
     feed_dict.update({placeholders['support'][i]: support[i] for i in range(len(support))})
     feed_dict.update({placeholders['num_features_nonzero']: features[1].shape})
     return feed_dict
+
 
 def construct_feed_dict3(features, support, labels, labels_mask, placeholders):
     """Construct feed dictionary."""
@@ -344,6 +347,7 @@ def construct_feed_dict3(features, support, labels, labels_mask, placeholders):
     feed_dict.update({placeholders['support'][i]: support[i] for i in range(len(support))})
     feed_dict.update({placeholders['num_features_nonzero']: features[1].shape})
     return feed_dict
+
 
 def chebyshev_polynomials(adj, k):
     """Calculate Chebyshev polynomials up to order k. Return a list of sparse matrices (tuple representation)."""
